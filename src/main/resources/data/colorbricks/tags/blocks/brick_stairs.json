@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:brick_stairs",
+    "colorbricks:black_brick_stairs",
+    "colorbricks:blue_brick_stairs",
+    "colorbricks:brown_brick_stairs",
+    "colorbricks:cyan_brick_stairs",
+    "colorbricks:gray_brick_stairs",
+    "colorbricks:green_brick_stairs",
+    "colorbricks:light_blue_brick_stairs",
+    "colorbricks:light_gray_brick_stairs",
+    "colorbricks:lime_brick_stairs",
+    "colorbricks:magenta_brick_stairs",
+    "colorbricks:orange_brick_stairs",
+    "colorbricks:pink_brick_stairs",
+    "colorbricks:purple_brick_stairs",
+    "colorbricks:red_brick_stairs",
+    "colorbricks:white_brick_stairs",
+    "colorbricks:yellow_brick_stairs"
+  ]
+}
