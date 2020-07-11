@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "color_brick_stairs",
+    "ingredients": [
+        {
+            "item": "minecraft:light_gray_dye"
+        },
+        {
+            "tag": "colorbricks:brick_stairs"
+        }
+    ],
+    "result": {
+        "item": "colorbricks:light_gray_brick_stairs"
+    }
+}

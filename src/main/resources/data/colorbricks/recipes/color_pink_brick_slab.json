@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "color_brick_slab",
+    "ingredients": [
+        {
+            "item": "minecraft:pink_dye"
+        },
+        {
+            "tag": "colorbricks:brick_slabs"
+        }
+    ],
+    "result": {
+        "item": "colorbricks:pink_brick_slab"
+    }
+}

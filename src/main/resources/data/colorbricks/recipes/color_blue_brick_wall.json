@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "color_brick_wall",
+    "ingredients": [
+        {
+            "item": "minecraft:blue_dye"
+        },
+        {
+            "tag": "colorbricks:brick_walls"
+        }
+    ],
+    "result": {
+        "item": "colorbricks:blue_brick_wall"
+    }
+}

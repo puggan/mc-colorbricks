@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "color_brick_wall",
+    "ingredients": [
+        {
+            "item": "minecraft:cyan_dye"
+        },
+        {
+            "tag": "colorbricks:brick_walls"
+        }
+    ],
+    "result": {
+        "item": "colorbricks:cyan_brick_wall"
+    }
+}
