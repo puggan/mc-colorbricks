@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "colorbricks:black_bricks"
+    }
+  },
+  "result": {
+    "item": "colorbricks:black_brick_slab",
+    "count": 6
+  }
+}

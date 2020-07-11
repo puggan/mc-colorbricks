@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "colorbricks:white_bricks"
+    }
+  },
+  "result": {
+    "item": "colorbricks:white_brick_stairs",
+    "count": 4
+  }
+}
