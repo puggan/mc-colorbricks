@@ -19,8 +19,8 @@ import se.puggan.colorbricks.items.ColorBrickWallItem;
 import se.puggan.colorbricks.items.ColorBricksItem;
 
 public class RegistryHandler {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, se.puggan.colorbricks.ColorBricks.MOD_ID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, se.puggan.colorbricks.ColorBricks.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister(ForgeRegistries.BLOCKS, se.puggan.colorbricks.ColorBricks.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = new DeferredRegister(ForgeRegistries.ITEMS, se.puggan.colorbricks.ColorBricks.MOD_ID);
 
     public static final RegistryObject<Block> BLACK_BRICKS_BLOCK = BLOCKS.register("black_bricks", ColorBricksBlock::black);
     public static final RegistryObject<Block> BLACK_BRICK_SLAB_BLOCK = BLOCKS.register("black_brick_slab", ColorBrickSlabBlock::black);
