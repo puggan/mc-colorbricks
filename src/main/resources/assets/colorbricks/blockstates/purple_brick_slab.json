@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "colorbricks:block/purple_brick_slab" },
+        "type=top": { "model": "colorbricks:block/purple_brick_slab_top" },
+        "type=double": { "model": "colorbricks:block/purple_bricks" }
+    }
+}

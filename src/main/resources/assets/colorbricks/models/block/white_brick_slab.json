@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "colorbricks:block/white_bricks",
+        "top": "colorbricks:block/white_bricks",
+        "side": "colorbricks:block/white_bricks"
+    }
+}

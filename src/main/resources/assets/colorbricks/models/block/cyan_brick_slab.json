@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "colorbricks:block/cyan_bricks",
+        "top": "colorbricks:block/cyan_bricks",
+        "side": "colorbricks:block/cyan_bricks"
+    }
+}

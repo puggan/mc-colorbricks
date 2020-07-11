@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "colorbricks:block/purple_bricks",
+        "top": "colorbricks:block/purple_bricks",
+        "side": "colorbricks:block/purple_bricks"
+    }
+}
