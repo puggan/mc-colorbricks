@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "colorbricks",
+  "version": "${version}",
+
+  "name": "ColorBricks",
+  "description": "Adds bricks with colors.",
+  "authors": [
+    "Puggan Sundragon"
+  ],
+  "contact": {
+    "homepage": "https://github.com/puggan/mc-colorbricks",
+    "sources": "https://github.com/puggan/mc-colorbricks"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "se.puggan.colorbricks.ColorBricks"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
