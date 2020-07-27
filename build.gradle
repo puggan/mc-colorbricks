@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
 plugins {
     id 'fabric-loom' version '0.4-SNAPSHOT'
     id 'maven-publish'
@@ -32,6 +35,22 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         exclude "fabric.mod.json"
+    }
+
+    doLast {
+        final long jsonMinifyStart = System.currentTimeMillis()
+        long jsonMinified = 0
+        long jsonBytesSaved = 0
+
+        fileTree(dir: outputs.files.asPath, include: '**/*.json').each {
+            final File file = it
+            jsonMinified++
+            final long oldLength = file.length()
+            file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+            jsonBytesSaved += oldLength - file.length()
+        }
+
+        println('Minified ' + jsonMinified + ' json files. Saved ' + jsonBytesSaved + ' bytes. Took ' + (System.currentTimeMillis() - jsonMinifyStart) + 'ms.')
     }
 }
 
