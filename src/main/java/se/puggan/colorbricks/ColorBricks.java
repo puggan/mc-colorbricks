@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -43,7 +44,7 @@ public class ColorBricks implements ModInitializer {
         }};
 
         for (Map.Entry<String, MaterialColor> color : colors.entrySet()) {
-            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getValue()).requiresTool().strength(2.0F, 6.0F);
+            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getValue()).requiresTool().breakByTool(FabricToolTags.PICKAXES, 0).strength(2.0F, 6.0F);
             for (String blockType : blockTypes) {
                 String name = color.getKey() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);
