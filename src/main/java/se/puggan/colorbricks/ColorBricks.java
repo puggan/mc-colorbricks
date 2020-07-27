@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
-import net.minecraft.block.MaterialColor;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.WallBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -17,8 +13,9 @@ import net.minecraft.util.registry.Registry;
 
 public class ColorBricks implements ModInitializer {
     // Directly reference a log4j logger.
-    //public static final Logger LOGGER = LogManager.getLogger();
-    public static String MOD_ID = "colorbricks";
+    //private static final Logger LOGGER = LogManager.getLogger("ColorBricks");
+    private static final String MOD_ID = "colorbricks";
+    private static final Item.Settings ITEM_SETTINGS = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
 
     public ColorBricks() {
     }
@@ -45,8 +42,6 @@ public class ColorBricks implements ModInitializer {
             put("yellow", MaterialColor.YELLOW);
         }};
 
-        Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
-
         for (Map.Entry<String, MaterialColor> color : colors.entrySet()) {
             FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getValue()).requiresTool().strength(2.0F, 6.0F);
             for (String blockType : blockTypes) {
@@ -69,12 +64,19 @@ public class ColorBricks implements ModInitializer {
 
                     default:
                         block = new Block(blockSettings);
+                        break;
                 }
 
                 Registry.register(Registry.BLOCK, id, block);
-                Item item = new BlockItem(block, itemSetting);
-                Registry.register(Registry.ITEM, id, item);
+                Registry.register(Registry.ITEM, id, new BlockItem(block, ITEM_SETTINGS));
             }
+        }
+    }
+
+    // Since it's such a small class, it should be in here with the rest of the code
+    public static class ColoredBrickStairsBlock extends StairsBlock {
+        public ColoredBrickStairsBlock(Settings settings) {
+            super(Blocks.BRICKS.getDefaultState(), settings);
         }
     }
 }
