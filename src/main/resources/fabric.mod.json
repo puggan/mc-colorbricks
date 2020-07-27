@@ -9,12 +9,13 @@
     "Puggan Sundragon"
   ],
   "contact": {
-    "homepage": "https://github.com/puggan/mc-colorbricks",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/colorbricks",
+    "issues": "https://github.com/puggan/mc-colorbricks/issues",
     "sources": "https://github.com/puggan/mc-colorbricks"
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/colorbricks/logo.png",
 
   "environment": "*",
   "entrypoints": {
@@ -22,15 +23,10 @@
       "se.puggan.colorbricks.ColorBricks"
     ]
   },
-  "mixins": [
-  ],
 
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
     "minecraft": "1.16.x"
-  },
-  "suggests": {
-    "flamingo": "*"
   }
 }
