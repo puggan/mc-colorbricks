@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:brick_wall",
+    "colorbricks:black_brick_wall",
     "colorbricks:blue_brick_wall",
     "colorbricks:brown_brick_wall",
     "colorbricks:cyan_brick_wall",
