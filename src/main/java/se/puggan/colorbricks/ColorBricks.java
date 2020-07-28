@@ -3,8 +3,10 @@ package se.puggan.colorbricks;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -26,6 +28,12 @@ public class ColorBricks implements ModInitializer {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
         Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
 
+        class BrickStairs extends StairsBlock {
+            public BrickStairs(Settings settings) {
+                super(Blocks.BRICKS.getDefaultState(), settings);
+            }
+        }
+
         for(DyeColor color : DyeColor.values()) {
             FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getMaterialColor()).requiresTool().strength(2.0F, 6.0F);
             for (String blockType : blockTypes) {
@@ -39,7 +47,7 @@ public class ColorBricks implements ModInitializer {
                         break;
 
                     case "brick_stairs":
-                        block = new ColoredBrickStairsBlock(blockSettings);
+                        block = new BrickStairs(blockSettings);
                         break;
 
                     case "brick_wall":
