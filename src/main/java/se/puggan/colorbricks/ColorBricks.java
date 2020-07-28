@@ -3,6 +3,7 @@ package se.puggan.colorbricks;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
@@ -27,10 +28,11 @@ public class ColorBricks implements ModInitializer {
     public void onInitialize() {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
         Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
+        BlockState brickState = Blocks.BRICKS.getDefaultState();
 
         class BrickStairs extends StairsBlock {
             public BrickStairs(Settings settings) {
-                super(Blocks.BRICKS.getDefaultState(), settings);
+                super(brickState, settings);
             }
         }
 
