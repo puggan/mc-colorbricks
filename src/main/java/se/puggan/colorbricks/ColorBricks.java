@@ -33,7 +33,7 @@ public class ColorBricks {
         for(DyeColor color : DyeColor.values()) {
             AbstractBlock.Properties blockProperties = AbstractBlock.Properties.create(Material.ROCK, color.getMapColor()).func_235861_h_().hardnessAndResistance(2.0F, 6.0F);;
             for(String blockType : blockTypes) {
-                String name = color.name() + "_" + blockType;
+                String name = color.getTranslationKey() + "_" + blockType;
                 Supplier<Block> blockSupplier;
 
                 switch (blockType)
