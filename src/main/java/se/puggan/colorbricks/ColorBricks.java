@@ -1,64 +1,81 @@
 package se.puggan.colorbricks;
 
-import java.util.function.Supplier;
+import java.util.HashSet;
+import java.util.Set;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.WallBlock;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStairs;
+import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod("colorbricks")
+@Mod(ColorBricks.MOD_ID)
+@Mod.EventBusSubscriber(modid = ColorBricks.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ColorBricks {
     //public static final Logger LOGGER = LogManager.getLogger();
-    public static String MOD_ID = "colorbricks";
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister(ForgeRegistries.BLOCKS, MOD_ID);
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister(ForgeRegistries.ITEMS, MOD_ID);
+    public static final String MOD_ID = "colorbricks";
+    public static final Set<Block> BLOCKS = new HashSet<>();
+    public static final Set<Item> ITEMS = new HashSet<>();
 
     public ColorBricks() {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
         Item.Properties itemProperties = new Item.Properties().group(ItemGroup.BUILDING_BLOCKS);
 
-        for(DyeColor color : DyeColor.values()) {
+        for(EnumDyeColor color : EnumDyeColor.values()) {
             Block.Properties blockProperties = Block.Properties.create(Material.ROCK, color.getMapColor()).hardnessAndResistance(2.0F, 6.0F);;
             for(String blockType : blockTypes) {
                 String name = color.getTranslationKey() + "_" + blockType;
-                Supplier<Block> blockSupplier;
+                String fullName = MOD_ID + ":" + name;
+                Block block;
 
                 switch (blockType)
                 {
                     case "brick_slab":
-                        blockSupplier = () -> new SlabBlock(blockProperties);
+                        block = new BlockSlab(blockProperties);
                         break;
 
                     case "brick_stairs":
-                        blockSupplier = () -> new StairsBlock(Blocks.BRICKS::getDefaultState, blockProperties);
+                        block = new Stairs(Blocks.BRICKS.getDefaultState(), blockProperties);
                         break;
 
                     case "brick_wall":
-                        blockSupplier = () -> new WallBlock(blockProperties);
+                        block = new BlockWall(blockProperties);
                         break;
 
                     default:
-                        blockSupplier = () -> new Block(blockProperties);
+                        block = new Block(blockProperties);
                 }
-                RegistryObject<Block> roBlock = BLOCKS.register(name, blockSupplier);
-                ITEMS.register(name, () -> new BlockItem(roBlock.get(), itemProperties));
+                block.setRegistryName(fullName);
+                BLOCKS.add(block);
+                ItemBlock item = new ItemBlock(block, itemProperties);
+                item.setRegistryName(fullName);
+                ITEMS.add(item);
             }
         }
+    }
 
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        BLOCKS.register(modEventBus);
-        ITEMS.register(modEventBus);
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        BLOCKS.forEach(event.getRegistry()::register);
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        ITEMS.forEach(event.getRegistry()::register);
+    }
+
+    // Wrapper for protected constructor
+    public class Stairs extends BlockStairs {
+        public Stairs(IBlockState p_i48321_1_, Properties p_i48321_2_) {
+            super(p_i48321_1_, p_i48321_2_);
+        }
     }
 }
