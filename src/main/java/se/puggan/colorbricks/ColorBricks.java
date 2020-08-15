@@ -29,6 +29,16 @@ public class ColorBricks {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
         Item.Properties itemProperties = new Item.Properties().group(ItemGroup.BUILDING_BLOCKS);
 
+        // Brick wall was added in 1.14, so we have to make our own
+        String brickWallFullName = MOD_ID + ":brick_wall";
+        Block.Properties brickWallProperties = Block.Properties.create(Material.ROCK, EnumDyeColor.RED.getMapColor()).hardnessAndResistance(2.0F, 6.0F);;
+        Block brickWallBlock = new BlockWall(brickWallProperties);
+        ItemBlock brickWallItem = new ItemBlock(brickWallBlock, itemProperties);
+        brickWallBlock.setRegistryName(brickWallFullName);
+        BLOCKS.add(brickWallBlock);
+        brickWallItem.setRegistryName(brickWallFullName);
+        ITEMS.add(brickWallItem);
+
         for(EnumDyeColor color : EnumDyeColor.values()) {
             Block.Properties blockProperties = Block.Properties.create(Material.ROCK, color.getMapColor()).hardnessAndResistance(2.0F, 6.0F);;
             for(String blockType : blockTypes) {
