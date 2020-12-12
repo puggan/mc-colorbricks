@@ -92,3 +92,36 @@ Start the game and use your block:
 By adding another image-file named `pack.png` besides the `pack.mcmeta`-file,
 you get an icon in the in-game resource-pack selector:  
 ![Pack with Icon](./pack-icon.png)
+
+## 6. Extra: Sugest that your image replace the original one (github)
+If your modification made the block look better, and you think everyone using the mod should have this new look when they play,
+you can add your image as a sugestion to the developer.
+
+Make sure you are logged in at [github](https://githib.com/), creat a free account if you don't already have one.
+
+Find the repository with the mod in, see 1.1a above.
+
+Use the "Fork"-button to make your own copy of the code.  
+![Fork the repository](./fork.png)
+
+You should end up at an almost identical page, but with your username infront fo the repository-name.  
+![Your own repo](./your-repo.png)
+
+Navigate to the folder where the images are, again see 1.1a above,
+and press the "Add file"-button followed by the "Upload files"-button.  
+![Upload files](./github-upload.png)
+
+Select your new file, write a note about your change, (this ends up in the history),
+and name your new branch.
+![Upload file to new branch](./github-new-branch.png)
+
+On the "Open a pull request"-page, start with clicking the "compare across forks"-link/button.
+In the 4 dropdowns select the original developers repository from the first dropdown.
+The other dropdown should be correct.  
+![Create an Pull-Request](./github-pr.png)
+
+Press the "Create Pull Request"-button.
+
+Tada you sent a request to replace the texture with your own texture.
+
+The exemple above can be view in [github.com/puggan/mc-colorbricks/pull/7](https://github.com/puggan/mc-colorbricks/pull/7)
