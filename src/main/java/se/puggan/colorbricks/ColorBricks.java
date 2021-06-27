@@ -37,7 +37,7 @@ public class ColorBricks implements ModInitializer {
         }
 
         for(DyeColor color : DyeColor.values()) {
-            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getMaterialColor()).requiresTool().strength(2.0F, 6.0F);
+            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getMapColor()).requiresTool().strength(2.0F, 6.0F);
             for (String blockType : blockTypes) {
                 String name = color.getName() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);
