@@ -1,99 +1,124 @@
-import groovy.json.JsonSlurper
-import groovy.json.JsonOutput
-
-plugins {
-    id 'fabric-loom' version '0.7-SNAPSHOT'
-    id 'maven-publish'
-}
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-archivesBaseName = project.archives_base_name
-version =  project.mc_version + '-' + project.mod_version
-group = project.maven_group
-
-repositories {
-    mavenCentral()
-
-    maven {
-        url = "https://maven.shedaniel.me/"
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
     }
-    maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = 'https://maven.terraformersmc.com/releases/' }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = mc_version + '-' + mod_version
+group = 'se.puggan.colorbricks'
+archivesBaseName = 'colorbricks-forge'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+minecraft {
+    mappings channel: 'snapshot', version: mcp_version
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.mc_version}"
-    mappings "net.fabricmc:yarn:${project.mc_version}+build.${project.yarn_build}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
+    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
+    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+    minecraft 'net.minecraftforge:forge:' + mc_version + '-' + forge_version
+}
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}+${project.mc_major_version}"
-
-    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
-
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"
-    //modRuntime "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "ColorBricks",
+            "Specification-Vendor": "Puggan",
+            "Specification-Version": mod_version,
+            "Implementation-Title": project.name,
+            "Implementation-Version": mc_version + '-' + mod_version,
+            "Implementation-Vendor": "Puggan",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
 }
 
 processResources {
-    inputs.property "version", project.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "fabric.mod.json"
-        duplicatesStrategy "warn"
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
-        expand ( "version": project.version, "loader_version": project.loader_min_version, "mc_mversion": project.mc_major_version )
-        duplicatesStrategy "warn"
-    }
-
-    doLast {
-        final long jsonMinifyStart = System.currentTimeMillis()
-        long jsonMinified = 0
-        long jsonBytesSaved = 0
-
-        fileTree(dir: outputs.files.asPath, include: '**/*.json').each {
-            final File file = it
-            jsonMinified++
-            final long oldLength = file.length()
-            file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-            jsonBytesSaved += oldLength - file.length()
-        }
-
-        println('Minified ' + jsonMinified + ' json files. Saved ' + jsonBytesSaved + ' bytes. Took ' + (System.currentTimeMillis() - jsonMinifyStart) + 'ms.')
+    filesMatching('META-INF/mods.toml') {
+        expand project.properties
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources"
-    from sourceSets.main.allSource
-}
-
-jar {
-    from "LICENSE"
-}
+// Example configuration to allow publishing using the maven-publish task
+// This is the preferred method to reobfuscate your jar file
+jar.finalizedBy('reobfJar')
+// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
+//publish.dependsOn('reobfJar')
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+            artifact jar
         }
     }
-
-    // select the repositories you want to publish to
     repositories {
-        // mavenLocal()
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
     }
 }

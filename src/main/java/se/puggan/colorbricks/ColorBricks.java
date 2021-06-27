@@ -1,69 +1,65 @@
 package se.puggan.colorbricks;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import java.util.function.Supplier;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class ColorBricks implements ModInitializer {
-    // Directly reference a log4j logger.
+@Mod("colorbricks")
+public class ColorBricks {
     //public static final Logger LOGGER = LogManager.getLogger();
     public static String MOD_ID = "colorbricks";
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public ColorBricks() {
-    }
-
-    @Override
-    public void onInitialize() {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
-        Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
-        BlockState brickState = Blocks.BRICKS.getDefaultState();
-
-        class BrickStairs extends StairsBlock {
-            public BrickStairs(Settings settings) {
-                super(brickState, settings);
-            }
-        }
+        Item.Properties itemProperties = new Item.Properties().group(ItemGroup.BUILDING_BLOCKS);
 
         for(DyeColor color : DyeColor.values()) {
-            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getMapColor()).requiresTool().strength(2.0F, 6.0F);
-            for (String blockType : blockTypes) {
-                String name = color.getName() + "_" + blockType;
-                Identifier id = new Identifier(MOD_ID, name);
-                Block block;
+            AbstractBlock.Properties blockProperties = AbstractBlock.Properties.create(Material.ROCK, color.getMapColor()).func_235861_h_().hardnessAndResistance(2.0F, 6.0F);;
+            for(String blockType : blockTypes) {
+                String name = color.getTranslationKey() + "_" + blockType;
+                Supplier<Block> blockSupplier;
 
-                switch (blockType) {
+                switch (blockType)
+                {
                     case "brick_slab":
-                        block = new SlabBlock(blockSettings);
+                        blockSupplier = () -> new SlabBlock(blockProperties);
                         break;
 
                     case "brick_stairs":
-                        block = new BrickStairs(blockSettings);
+                        blockSupplier = () -> new StairsBlock(Blocks.BRICKS::getDefaultState, blockProperties);
                         break;
 
                     case "brick_wall":
-                        block = new WallBlock(blockSettings);
+                        blockSupplier = () -> new WallBlock(blockProperties);
                         break;
 
                     default:
-                        block = new Block(blockSettings);
+                        blockSupplier = () -> new Block(blockProperties);
                 }
-
-                Registry.register(Registry.BLOCK, id, block);
-                Item item = new BlockItem(block, itemSetting);
-                Registry.register(Registry.ITEM, id, item);
+                RegistryObject<Block> roBlock = BLOCKS.register(name, blockSupplier);
+                ITEMS.register(name, () -> new BlockItem(roBlock.get(), itemProperties));
             }
         }
+
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        BLOCKS.register(modEventBus);
+        ITEMS.register(modEventBus);
     }
 }
