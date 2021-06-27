@@ -19,7 +19,7 @@ import net.minecraft.util.registry.Registry;
 public class ColorBricks implements ModInitializer {
     // Directly reference a log4j logger.
     //public static final Logger LOGGER = LogManager.getLogger();
-    public static String MOD_ID = "colorbricks";
+    public static final String MOD_ID = "colorbricks";
 
     public ColorBricks() {
     }
@@ -41,24 +41,12 @@ public class ColorBricks implements ModInitializer {
             for (String blockType : blockTypes) {
                 String name = color.getName() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);
-                Block block;
-
-                switch (blockType) {
-                    case "brick_slab":
-                        block = new SlabBlock(blockSettings);
-                        break;
-
-                    case "brick_stairs":
-                        block = new BrickStairs(blockSettings);
-                        break;
-
-                    case "brick_wall":
-                        block = new WallBlock(blockSettings);
-                        break;
-
-                    default:
-                        block = new Block(blockSettings);
-                }
+                Block block = switch (blockType) {
+                    case "brick_slab" -> new SlabBlock(blockSettings);
+                    case "brick_stairs" -> new BrickStairs(blockSettings);
+                    case "brick_wall" -> new WallBlock(blockSettings);
+                    default -> new Block(blockSettings);
+                };
 
                 Registry.register(Registry.BLOCK, id, block);
                 Item item = new BlockItem(block, itemSetting);
