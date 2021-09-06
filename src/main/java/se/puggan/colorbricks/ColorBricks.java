@@ -2,6 +2,7 @@ package se.puggan.colorbricks;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,6 +16,8 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import com.google.gson.Gson;
 
 public class ColorBricks implements ModInitializer {
     // Directly reference a log4j logger.
@@ -36,8 +39,14 @@ public class ColorBricks implements ModInitializer {
             }
         }
 
+        // CopyOf dosn't seems to work on core blocks, so we have to set the breakByTool value again
+        FabricBlockSettings baseBlockSettings = FabricBlockSettings.copyOf(Blocks.BRICKS);
+        baseBlockSettings.breakByTool(FabricToolTags.PICKAXES, 0);
+
         for(DyeColor color : DyeColor.values()) {
-            FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.STONE, color.getMapColor()).requiresTool().strength(2.0F, 6.0F);
+            FabricBlockSettings blockSettings = FabricBlockSettings.copyOf(baseBlockSettings);
+            blockSettings.mapColor(color);
+
             for (String blockType : blockTypes) {
                 String name = color.getName() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);

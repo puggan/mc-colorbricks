@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.2
+* Set required tool to pickaxe (by coping the settings from the brick-block). [Issue 11](https://github.com/puggan/mc-colorbricks/issues/11), thanks Rayxanber
+
 ## 1.2.0
 * recipe for coloring 8 at the time, like the recipe for stained-glass, suggested by [A-a-ron717](https://github.com/puggan/mc-colorbricks/issues/5)
 
