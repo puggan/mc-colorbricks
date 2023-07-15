@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.3
+* Picking up the project, setting up my build env again, using [FabricMC/emeple-mod](https://github.com/FabricMC/fabric-example-mod) as a base
+
 ## 1.2.2
 * Set required tool to pickaxe (by coping the settings from the brick-block). [Issue 11](https://github.com/puggan/mc-colorbricks/issues/11), thanks Rayxanber
 
