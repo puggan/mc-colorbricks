@@ -4,6 +4,7 @@ all: clean build run
 
 clean:
 	./gradlew --stop
+	./gradlew cleanloom
 	./gradlew clean
 
 build:

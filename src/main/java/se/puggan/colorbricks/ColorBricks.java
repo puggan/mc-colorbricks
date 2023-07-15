@@ -39,9 +39,7 @@ public class ColorBricks implements ModInitializer {
             }
         }
 
-        // CopyOf dosn't seems to work on core blocks, so we have to set the breakByTool value again
         FabricBlockSettings baseBlockSettings = FabricBlockSettings.copyOf(Blocks.BRICKS);
-        baseBlockSettings.breakByTool(FabricToolTags.PICKAXES, 0);
 
         for(DyeColor color : DyeColor.values()) {
             FabricBlockSettings blockSettings = FabricBlockSettings.copyOf(baseBlockSettings);
