@@ -1,20 +1,21 @@
 package se.puggan.colorbricks;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 import com.google.gson.Gson;
 
@@ -29,7 +30,11 @@ public class ColorBricks implements ModInitializer {
     @Override
     public void onInitialize() {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
-        Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
+
+        Block[] blocks = new Block[DyeColor.values().length * blockTypes.length];
+        int blockIndex = 0;
+
+        Item.Settings itemSetting = new Item.Settings();
         BlockState brickState = Blocks.BRICKS.getDefaultState();
 
         class BrickStairs extends StairsBlock {
@@ -54,10 +59,17 @@ public class ColorBricks implements ModInitializer {
                     default -> new Block(blockSettings);
                 };
 
-                Registry.register(Registry.BLOCK, id, block);
+                Registry.register(Registries.BLOCK, id, block);
                 Item item = new BlockItem(block, itemSetting);
-                Registry.register(Registry.ITEM, id, item);
+                Registry.register(Registries.ITEM, id, item);
+
+                blocks[blockIndex++] = block;
             }
         }
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
+            for (Block block : blocks) {
+                content.add(block);
+            }
+        });
     }
 }
