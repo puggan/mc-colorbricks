@@ -1,33 +1,32 @@
 {
-  "schemaVersion": 1,
-  "id": "colorbricks",
-  "version": "${version}",
+	"schemaVersion": 1,
+	"id": "colorbricks",
+	"version": "${version}",
 
-  "name": "ColorBricks",
-  "description": "Adds bricks with colors.",
-  "authors": [
-    "Puggan Sundragon"
-  ],
-  "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/colorbricks",
-    "issues": "https://github.com/puggan/mc-colorbricks/issues",
-    "sources": "https://github.com/puggan/mc-colorbricks"
-  },
+	"name": "ColorBricks",
+	"description": "Adds bricks with colors.",
+	"authors": [
+		"Puggan Sundragon"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/colorbricks",
+		"issues": "https://github.com/puggan/mc-colorbricks/issues",
+		"sources": "https://github.com/puggan/mc-colorbricks"
+	},
 
-  "license": "MIT",
-  "icon": "assets/colorbricks/logo.png",
+	"license": "MIT",
+	"icon": "assets/colorbricks/logo.png",
+	"environment": "*",
 
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "se.puggan.colorbricks.ColorBricks"
-    ]
-  },
-
-  "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric-api": "*",
-    "minecraft": "${mc_mversion}.x",
-    "java": ">=17"
-  }
+	"entrypoints": {
+		"main": [
+			"se.puggan.colorbricks.ColorBricks"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"fabric-api": "*",
+		"minecraft": "${mc_mversion}.x",
+		"java": ">=17"
+	}
 }
