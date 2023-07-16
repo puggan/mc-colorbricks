@@ -1,12 +1,12 @@
 package se.puggan.colorbricks;
 
+import io.github.haykam821.columns.block.ColumnBlock;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
@@ -20,18 +20,14 @@ import net.minecraft.util.registry.Registry;
 import com.google.gson.Gson;
 
 public class ColorBricks implements ModInitializer {
-    // Directly reference a log4j logger.
-    //public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "colorbricks";
-
-    public ColorBricks() {
-    }
 
     @Override
     public void onInitialize() {
-        String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall"};
+        String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall", "brick_column"};
         Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
         BlockState brickState = Blocks.BRICKS.getDefaultState();
+        Boolean addColumns = FabricLoader.getInstance().isModLoaded("columns");
 
         class BrickStairs extends StairsBlock {
             public BrickStairs(Settings settings) {
@@ -46,12 +42,16 @@ public class ColorBricks implements ModInitializer {
             blockSettings.mapColor(color);
 
             for (String blockType : blockTypes) {
+                if (!addColumns && blockType.equals("brick_column")) {
+                    continue;
+                }
                 String name = color.getName() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);
                 Block block = switch (blockType) {
                     case "brick_slab" -> new SlabBlock(blockSettings);
                     case "brick_stairs" -> new BrickStairs(blockSettings);
                     case "brick_wall" -> new WallBlock(blockSettings);
+                    case "brick_column" -> new ColumnBlock(blockSettings);
                     default -> new Block(blockSettings);
                 };
 

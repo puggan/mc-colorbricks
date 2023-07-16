@@ -8,6 +8,7 @@ clean:
 	./gradlew clean
 
 build:
+	php generateJson.php
 	./gradlew build
 
 reset:

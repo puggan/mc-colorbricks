@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0
+* Adding colored [columns](https://www.curseforge.com/minecraft/mc-mods/columns), Sugested by heyjudek in [Issue 9](https://github.com/puggan/mc-colorbricks/issues/9)
+
 ## 1.2.4
 * Bugfix logo not visible in modmenu
 
