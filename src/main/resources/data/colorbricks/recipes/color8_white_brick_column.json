@@ -1,0 +1,37 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "color_brick_column",
+    "ingredients": [
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "item": "minecraft:white_dye"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        },
+        {
+            "tag": "colorbricks:brick_columns"
+        }
+    ],
+    "result": {
+        "count": 8,
+        "item": "colorbricks:white_brick_column"
+    }
+}

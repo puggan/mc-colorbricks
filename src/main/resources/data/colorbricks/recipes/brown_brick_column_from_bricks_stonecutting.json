@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "colorbricks:brown_bricks"
+    },
+    "result": "colorbricks:brown_brick_column",
+    "count": 1
+}

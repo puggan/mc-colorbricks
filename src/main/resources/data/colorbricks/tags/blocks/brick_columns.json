@@ -1,0 +1,22 @@
+{
+    "replace": false,
+    "values": [
+        "columns:brick_column",
+        "colorbricks:black_brick_column",
+        "colorbricks:blue_brick_column",
+        "colorbricks:brown_brick_column",
+        "colorbricks:cyan_brick_column",
+        "colorbricks:gray_brick_column",
+        "colorbricks:green_brick_column",
+        "colorbricks:light_blue_brick_column",
+        "colorbricks:light_gray_brick_column",
+        "colorbricks:lime_brick_column",
+        "colorbricks:magenta_brick_column",
+        "colorbricks:orange_brick_column",
+        "colorbricks:pink_brick_column",
+        "colorbricks:purple_brick_column",
+        "colorbricks:red_brick_column",
+        "colorbricks:white_brick_column",
+        "colorbricks:yellow_brick_column"
+    ]
+}
