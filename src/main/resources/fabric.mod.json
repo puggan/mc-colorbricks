@@ -15,7 +15,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/colorbricks/logo.png",
+  "icon": "logo.png",
 
   "environment": "*",
   "entrypoints": {

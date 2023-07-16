@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.4
+* Bugfix logo not visible in modmenu
+* add tag #colrobricks:color_brick and add it to minable/pickaxe
+
 ## 1.2.3
 * Picking up the project, setting up my build env again, using [FabricMC/emeple-mod](https://github.com/FabricMC/fabric-example-mod) as a base
 
