@@ -1,6 +1,6 @@
 {
     "parent": "columns:block/column_center",
     "textures": {
-        "all": ":colorbricksblock/cyan_bricks"
+        "all": "colorbricks:block/cyan_bricks"
     }
 }

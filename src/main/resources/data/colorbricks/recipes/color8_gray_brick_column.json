@@ -33,5 +33,14 @@
     "result": {
         "count": 8,
         "item": "colorbricks:gray_brick_column"
-    }
+    },
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
+    ]
 }

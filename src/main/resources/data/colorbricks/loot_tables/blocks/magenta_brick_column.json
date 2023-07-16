@@ -15,5 +15,14 @@
                 }
             ]
         }
+    ],
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
     ]
 }

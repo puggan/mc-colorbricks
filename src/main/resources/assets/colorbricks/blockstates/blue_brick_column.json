@@ -20,9 +20,7 @@
             "apply": {
                 "model": "colorbricks:block/blue_brick_column_end",
                 "x": 180,
-                "uvlock": [
-                    true
-                ]
+                "uvlock": true
             }
         }
     ]

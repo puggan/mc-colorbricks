@@ -1,6 +1,6 @@
 {
     "parent": "columns:block/column_inventory",
     "textures": {
-        "all": ":colorbricksblock/lime_bricks"
+        "all": "colorbricks:block/lime_bricks"
     }
 }

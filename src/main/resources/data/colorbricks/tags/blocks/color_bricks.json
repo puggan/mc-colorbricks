@@ -2,9 +2,12 @@
     "replace": false,
     "values": [
         "#colorbricks:brick_blocks",
-        "#colorbricks:brick_columns",
         "#colorbricks:brick_slabs",
         "#colorbricks:brick_stairs",
-        "#colorbricks:brick_walls"
+        "#colorbricks:brick_walls",
+        {
+            "id": "#colorbricks:brick_columns",
+            "required": false
+        }
     ]
 }

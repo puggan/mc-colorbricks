@@ -1,7 +1,10 @@
 {
     "replace": false,
     "values": [
-        "columns:brick_column",
+        {
+            "id": "columns:brick_column",
+            "required": false
+        },
         "colorbricks:black_brick_column",
         "colorbricks:blue_brick_column",
         "colorbricks:brown_brick_column",
@@ -18,5 +21,14 @@
         "colorbricks:red_brick_column",
         "colorbricks:white_brick_column",
         "colorbricks:yellow_brick_column"
+    ],
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
     ]
 }

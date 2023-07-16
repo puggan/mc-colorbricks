@@ -4,5 +4,14 @@
         "item": "colorbricks:green_bricks"
     },
     "result": "colorbricks:green_brick_column",
-    "count": 1
+    "count": 1,
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
+    ]
 }

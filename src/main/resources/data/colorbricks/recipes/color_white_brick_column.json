@@ -11,5 +11,14 @@
     ],
     "result": {
         "item": "colorbricks:white_brick_column"
-    }
+    },
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
+    ]
 }

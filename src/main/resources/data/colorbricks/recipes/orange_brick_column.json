@@ -13,5 +13,14 @@
     "result": {
         "item": "colorbricks:orange_brick_column",
         "count": 6
-    }
+    },
+    "fabric:conditions": [
+        {
+            "condition": "fabric:allModsLoaded",
+            "values": [
+                "colorbricks",
+                "columns"
+            ]
+        }
+    ]
 }
