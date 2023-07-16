@@ -32,6 +32,14 @@
         'yellow',
     ];
 
+    $columnLoadedCondition = [
+        'condition' => 'fabric:allModsLoaded',
+        'values' => [
+            $modId,
+            'columns',
+        ],
+    ];
+
     //<editor-fold desc="Directories">
     $dirs = [
         "{$assetsPath}",
@@ -106,6 +114,7 @@
     $tags = [];
     foreach ($types as $typeTag => $type) {
         $blocks = [];
+        $tags[$type] = "#{$modId}:{$typeTag}";
         switch ($type) {
             case 'brick_slab':
             case 'brick_stairs':
@@ -113,10 +122,16 @@
                 $blocks[] = "minecraft:{$type}";
                 break;
             case 'brick_column':
-                $blocks[] = 'columns:brick_column';
+                $blocks[] = [
+                    'id' => 'columns:brick_column',
+                    'required' => false,
+                ];
+                $tags[$type] = [
+                    'id' => "#{$modId}:{$typeTag}",
+                    'required' => false,
+                ];
                 break;
         }
-        $tags[$type] = "#{$modId}:{$typeTag}";
         foreach ($colors as $color) {
             $blocks[] = "{$modId}:{$color}_{$type}";
         }
@@ -124,6 +139,9 @@
                 'replace' => false,
                 'values' => $blocks,
             ];
+        if ($type === 'brick_column') {
+            $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+        }
         file_put_contents("{$dataPath}/{$modId}/tags/blocks/{$typeTag}.json", json_encode($jsonData, $jsonOptions));
         file_put_contents("{$dataPath}/{$modId}/tags/items/{$typeTag}.json", json_encode($jsonData, $jsonOptions));
     }
@@ -152,6 +170,9 @@
                         'item' => "{$modId}:{$color}_{$type}",
                     ],
                 ];
+            if ($type === 'brick_column') {
+                $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+            }
             file_put_contents("{$dataPath}/{$modId}/recipes/color_{$color}_{$type}.json", json_encode($jsonData, $jsonOptions));
 
             $jsonData = [
@@ -173,6 +194,9 @@
                         'item' => "{$modId}:{$color}_{$type}",
                     ],
                 ];
+            if ($type === 'brick_column') {
+                $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+            }
             file_put_contents("{$dataPath}/{$modId}/recipes/color8_{$color}_{$type}.json", json_encode($jsonData, $jsonOptions));
 
             $jsonData = [
@@ -187,6 +211,9 @@
                         default => 1
                     }
                 ];
+            if ($type === 'brick_column') {
+                $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+            }
             if ($jsonData['count']) {
                 file_put_contents("{$dataPath}/{$modId}/recipes/{$color}_{$type}_from_bricks_stonecutting.json", json_encode($jsonData, $jsonOptions));
             }
@@ -222,6 +249,9 @@
                         'count' => $craftCount,
                     ],
                 ];
+                if ($type === 'brick_column') {
+                    $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+                }
 
                 file_put_contents("{$dataPath}/{$modId}/recipes/{$color}_{$type}.json", json_encode($jsonData, $jsonOptions));
             }
@@ -251,6 +281,9 @@
                     ],
                 ],
             ];
+            if ($type === 'brick_column') {
+                $jsonData['fabric:conditions'][] = $columnLoadedCondition;
+            }
             file_put_contents(
                 "{$dataPath}/{$modId}/loot_tables/blocks/{$color}_{$type}.json",
                 json_encode($jsonData, $jsonOptions),
@@ -292,9 +325,7 @@
                         'apply' => [
                             'model' => "{$modId}:block/{$color}_brick_column_end",
                             'x' => 180,
-                            'uvlock' => [
-                                true,
-                            ],
+                            'uvlock' => true,
                         ],
                     ],
                 ],
@@ -670,21 +701,21 @@
             'brick_column_center' => [
                 'parent' => 'columns:block/column_center',
                 'textures' => [
-                    'all' => ":{$modId}block/{$color}_bricks",
+                    'all' => "{$modId}:block/{$color}_bricks",
                 ],
             ],
 
             'brick_column_end' => [
                 'parent' => 'columns:block/column_end',
                 'textures' => [
-                    'all' => ":{$modId}block/{$color}_bricks",
+                    'all' => "{$modId}:block/{$color}_bricks",
                 ],
             ],
 
             'brick_column_inventory' => [
                 'parent' => 'columns:block/column_inventory',
                 'textures' => [
-                    'all' => ":{$modId}block/{$color}_bricks",
+                    'all' => "{$modId}:block/{$color}_bricks",
                 ],
             ],
 
