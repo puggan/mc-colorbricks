@@ -207,7 +207,7 @@
                     'pattern' => match ($type) {
                         'brick_column' => ['###', ' # ', '###'],
                         'brick_slab' => ['###'],
-                        'brick_stairs' => ['# ', '## ', '###'],
+                        'brick_stairs' => ['#  ', '## ', '###'],
                         'brick_wall' => ['###', '###'],
                         // Not possible
                         'bricks' => null,
