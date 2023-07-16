@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "colorbricks:blue_bricks"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "colorbricks:blue_bricks"
+        }
+    },
+    "result": {
+        "item": "colorbricks:blue_brick_wall",
+        "count": 6
     }
-  },
-  "result": {
-    "item": "colorbricks:blue_brick_wall",
-    "count": 6
-  }
 }

@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "colorbricks:pink_bricks"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# ",
+        "## ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "colorbricks:pink_bricks"
+        }
+    },
+    "result": {
+        "item": "colorbricks:pink_brick_stairs",
+        "count": 4
     }
-  },
-  "result": {
-    "item": "colorbricks:pink_brick_stairs",
-    "count": 4
-  }
 }

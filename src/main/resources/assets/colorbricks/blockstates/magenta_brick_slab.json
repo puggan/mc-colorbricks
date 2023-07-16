@@ -1,7 +1,13 @@
 {
     "variants": {
-        "type=bottom": { "model": "colorbricks:block/magenta_brick_slab" },
-        "type=top": { "model": "colorbricks:block/magenta_brick_slab_top" },
-        "type=double": { "model": "colorbricks:block/magenta_bricks" }
+        "type=bottom": {
+            "model": "colorbricks:block/magenta_brick_slab"
+        },
+        "type=top": {
+            "model": "colorbricks:block/magenta_brick_slab_top"
+        },
+        "type=double": {
+            "model": "colorbricks:block/magenta_bricks"
+        }
     }
 }

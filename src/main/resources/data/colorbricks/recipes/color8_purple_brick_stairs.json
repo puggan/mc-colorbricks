@@ -1,6 +1,6 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "group": "color_bricks",
+    "group": "color_brick_stairs",
     "ingredients": [
         {
             "tag": "colorbricks:brick_stairs"

@@ -1,22 +1,22 @@
 {
-  "replace": false,
-  "values": [
-    "minecraft:brick_wall",
-    "colorbricks:black_brick_wall",
-    "colorbricks:blue_brick_wall",
-    "colorbricks:brown_brick_wall",
-    "colorbricks:cyan_brick_wall",
-    "colorbricks:gray_brick_wall",
-    "colorbricks:green_brick_wall",
-    "colorbricks:light_blue_brick_wall",
-    "colorbricks:light_gray_brick_wall",
-    "colorbricks:lime_brick_wall",
-    "colorbricks:magenta_brick_wall",
-    "colorbricks:orange_brick_wall",
-    "colorbricks:pink_brick_wall",
-    "colorbricks:purple_brick_wall",
-    "colorbricks:red_brick_wall",
-    "colorbricks:white_brick_wall",
-    "colorbricks:yellow_brick_wall"
-  ]
+    "replace": false,
+    "values": [
+        "minecraft:brick_wall",
+        "colorbricks:black_brick_wall",
+        "colorbricks:blue_brick_wall",
+        "colorbricks:brown_brick_wall",
+        "colorbricks:cyan_brick_wall",
+        "colorbricks:gray_brick_wall",
+        "colorbricks:green_brick_wall",
+        "colorbricks:light_blue_brick_wall",
+        "colorbricks:light_gray_brick_wall",
+        "colorbricks:lime_brick_wall",
+        "colorbricks:magenta_brick_wall",
+        "colorbricks:orange_brick_wall",
+        "colorbricks:pink_brick_wall",
+        "colorbricks:purple_brick_wall",
+        "colorbricks:red_brick_wall",
+        "colorbricks:white_brick_wall",
+        "colorbricks:yellow_brick_wall"
+    ]
 }

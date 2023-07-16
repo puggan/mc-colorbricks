@@ -1,22 +1,22 @@
 {
-  "replace": false,
-  "values": [
-    "minecraft:brick_slab",
-    "colorbricks:black_brick_slab",
-    "colorbricks:blue_brick_slab",
-    "colorbricks:brown_brick_slab",
-    "colorbricks:cyan_brick_slab",
-    "colorbricks:gray_brick_slab",
-    "colorbricks:green_brick_slab",
-    "colorbricks:light_blue_brick_slab",
-    "colorbricks:light_gray_brick_slab",
-    "colorbricks:lime_brick_slab",
-    "colorbricks:magenta_brick_slab",
-    "colorbricks:orange_brick_slab",
-    "colorbricks:pink_brick_slab",
-    "colorbricks:purple_brick_slab",
-    "colorbricks:red_brick_slab",
-    "colorbricks:white_brick_slab",
-    "colorbricks:yellow_brick_slab"
-  ]
+    "replace": false,
+    "values": [
+        "minecraft:brick_slab",
+        "colorbricks:black_brick_slab",
+        "colorbricks:blue_brick_slab",
+        "colorbricks:brown_brick_slab",
+        "colorbricks:cyan_brick_slab",
+        "colorbricks:gray_brick_slab",
+        "colorbricks:green_brick_slab",
+        "colorbricks:light_blue_brick_slab",
+        "colorbricks:light_gray_brick_slab",
+        "colorbricks:lime_brick_slab",
+        "colorbricks:magenta_brick_slab",
+        "colorbricks:orange_brick_slab",
+        "colorbricks:pink_brick_slab",
+        "colorbricks:purple_brick_slab",
+        "colorbricks:red_brick_slab",
+        "colorbricks:white_brick_slab",
+        "colorbricks:yellow_brick_slab"
+    ]
 }

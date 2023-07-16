@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "#colorbricks:brick_walls"
-  ]
+    "replace": false,
+    "values": [
+        "#colorbricks:brick_walls"
+    ]
 }

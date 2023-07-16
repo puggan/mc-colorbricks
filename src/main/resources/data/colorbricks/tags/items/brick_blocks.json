@@ -1,22 +1,21 @@
 {
-  "replace": false,
-  "values": [
-    "minecraft:bricks",
-    "colorbricks:black_bricks",
-    "colorbricks:blue_bricks",
-    "colorbricks:brown_bricks",
-    "colorbricks:cyan_bricks",
-    "colorbricks:gray_bricks",
-    "colorbricks:green_bricks",
-    "colorbricks:light_blue_bricks",
-    "colorbricks:light_gray_bricks",
-    "colorbricks:lime_bricks",
-    "colorbricks:magenta_bricks",
-    "colorbricks:orange_bricks",
-    "colorbricks:pink_bricks",
-    "colorbricks:purple_bricks",
-    "colorbricks:red_bricks",
-    "colorbricks:white_bricks",
-    "colorbricks:yellow_bricks"
-  ]
+    "replace": false,
+    "values": [
+        "colorbricks:black_bricks",
+        "colorbricks:blue_bricks",
+        "colorbricks:brown_bricks",
+        "colorbricks:cyan_bricks",
+        "colorbricks:gray_bricks",
+        "colorbricks:green_bricks",
+        "colorbricks:light_blue_bricks",
+        "colorbricks:light_gray_bricks",
+        "colorbricks:lime_bricks",
+        "colorbricks:magenta_bricks",
+        "colorbricks:orange_bricks",
+        "colorbricks:pink_bricks",
+        "colorbricks:purple_bricks",
+        "colorbricks:red_bricks",
+        "colorbricks:white_bricks",
+        "colorbricks:yellow_bricks"
+    ]
 }

@@ -1,5 +1,7 @@
 {
     "variants": {
-        "": { "model": "colorbricks:block/magenta_bricks" }
+        "": {
+            "model": "colorbricks:block/magenta_bricks"
+        }
     }
 }
