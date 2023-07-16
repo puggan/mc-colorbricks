@@ -17,15 +17,8 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registry;
 
-import com.google.gson.Gson;
-
 public class ColorBricks implements ModInitializer {
-    // Directly reference a log4j logger.
-    //public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "colorbricks";
-
-    public ColorBricks() {
-    }
 
     @Override
     public void onInitialize() {
@@ -66,7 +59,7 @@ public class ColorBricks implements ModInitializer {
                 blocks[blockIndex++] = block;
             }
         }
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(content -> {
             for (Block block : blocks) {
                 content.add(block);
             }
