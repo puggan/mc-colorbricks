@@ -10,6 +10,7 @@
         'brick_slabs' => 'brick_slab',
         'brick_stairs' => 'brick_stairs',
         'brick_walls' => 'brick_wall',
+        'brick_columns' => 'brick_column',
     ];
     $baseForms = ['slabs', 'stairs', 'walls'];
     $colors = [
@@ -40,6 +41,9 @@
         "{$assetsPath}/{$modId}/models/block",
         "{$assetsPath}/{$modId}/models/item",
         "{$dataPath}",
+        "{$dataPath}/columns",
+        "{$dataPath}/columns/tags",
+        "{$dataPath}/columns/tags/blocks",
         "{$dataPath}/minecraft",
         "{$dataPath}/minecraft/tags",
         "{$dataPath}/minecraft/tags/blocks",
@@ -84,6 +88,18 @@
             $jsonOptions,
         ),
     );
+    file_put_contents(
+        "{$dataPath}/columns/tags/blocks/columns.json",
+        json_encode(
+            [
+                'replace' => false,
+                'values' => [
+                    "#{$modId}:brick_columns",
+                ],
+            ],
+            $jsonOptions,
+        ),
+    );
     //</editor-fold>
 
     //<editor-fold desc="Tags">
@@ -95,6 +111,9 @@
             case 'brick_stairs':
             case 'brick_wall':
                 $blocks[] = "minecraft:{$type}";
+                break;
+            case 'brick_column':
+                $blocks[] = 'columns:brick_column';
                 break;
         }
         $tags[$type] = "#{$modId}:{$typeTag}";
@@ -173,6 +192,7 @@
             }
 
             $craftCount = match ($type) {
+                'brick_column',
                 'brick_slab',
                 'brick_wall' => 6,
 
@@ -185,6 +205,7 @@
                 $jsonData = [
                     'type' => 'minecraft:crafting_shaped',
                     'pattern' => match ($type) {
+                        'brick_column' => ['###', ' # ', '###'],
                         'brick_slab' => ['###'],
                         'brick_stairs' => ['# ', '## ', '###'],
                         'brick_wall' => ['###', '###'],
@@ -245,6 +266,36 @@
                 'variants' => [
                     '' => [
                         'model' => "{$modId}:block/{$color}_bricks",
+                    ],
+                ],
+            ],
+
+            'brick_column' => [
+                'multipart' => [
+                    [
+                        'apply' => [
+                            'model' => "{$modId}:block/{$color}_brick_column_center",
+                        ],
+                    ],
+                    [
+                        'when' => [
+                            'down' => true,
+                        ],
+                        'apply' => [
+                            'model' => "{$modId}:block/{$color}_brick_column_end",
+                        ],
+                    ],
+                    [
+                        'when' => [
+                            'up' => true,
+                        ],
+                        'apply' => [
+                            'model' => "{$modId}:block/{$color}_brick_column_end",
+                            'x' => 180,
+                            'uvlock' => [
+                                true,
+                            ],
+                        ],
                     ],
                 ],
             ],
@@ -584,6 +635,8 @@
                 'parent' => "{$modId}:block/{$color}_bricks",
             ],
 
+            // brick_column_center brick_column_end
+
             'brick_slab' => [
                 'parent' => "{$modId}:block/{$color}_brick_slab",
             ],
@@ -677,6 +730,7 @@
                         'wall' => "{$modId}:block/{$color}_bricks",
                     ],
                 ],
+            // brick_column_center brick_column_end
 
             'brick_wall_side_tall' => [
                     'parent' => 'minecraft:block/template_wall_side_tall',
