@@ -3,6 +3,7 @@ package se.puggan.colorbricks;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -52,13 +53,15 @@ public class ColorBricks implements ModInitializer {
                         case "brick_slab" -> new SlabBlock(blockSettings);
                         case "brick_stairs" -> new BrickStairs(blockSettings);
                         case "brick_wall" -> new WallBlock(blockSettings);
+                        // case "brick_column" -> new ColumnBlock(blockSettings);
                         case "brick_column" -> (Block) Class
                                 .forName("io.github.haykam821.columns.block.ColumnBlock")
-                                .getDeclaredConstructor()
+                                .getDeclaredConstructor(AbstractBlock.Settings.class)
                                 .newInstance(blockSettings);
                         default -> new Block(blockSettings);
                     };
                 } catch (InstantiationException|IllegalAccessException|InvocationTargetException|NoSuchMethodException|ClassNotFoundException e) {
+                    System.err.println(e.toString());
                     continue;
                 }
 
