@@ -635,7 +635,9 @@
                 'parent' => "{$modId}:block/{$color}_bricks",
             ],
 
-            // brick_column_center brick_column_end
+            'brick_column' => [
+                'parent' => "{$modId}:block/{$color}_brick_column_inventory",
+            ],
 
             'brick_slab' => [
                 'parent' => "{$modId}:block/{$color}_brick_slab",
@@ -665,6 +667,27 @@
     //<editor-fold desc="Assets Blocks">
     foreach ($colors as $color) {
         $jsons = [
+            'brick_column_center' => [
+                'parent' => 'columns:block/column_center',
+                'textures' => [
+                    'all' => ":{$modId}block/{$color}_bricks",
+                ],
+            ],
+
+            'brick_column_end' => [
+                'parent' => 'columns:block/column_end',
+                'textures' => [
+                    'all' => ":{$modId}block/{$color}_bricks",
+                ],
+            ],
+
+            'brick_column_inventory' => [
+                'parent' => 'columns:block/column_inventory',
+                'textures' => [
+                    'all' => ":{$modId}block/{$color}_bricks",
+                ],
+            ],
+
             'brick_slab' => [
                     'parent' => 'block/slab',
                     'textures' => [
@@ -730,7 +753,6 @@
                         'wall' => "{$modId}:block/{$color}_bricks",
                     ],
                 ],
-            // brick_column_center brick_column_end
 
             'brick_wall_side_tall' => [
                     'parent' => 'minecraft:block/template_wall_side_tall',
