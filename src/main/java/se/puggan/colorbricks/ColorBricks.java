@@ -1,6 +1,5 @@
 package se.puggan.colorbricks;
 
-import io.github.haykam821.columns.block.ColumnBlock;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.api.FabricLoader;
@@ -17,7 +16,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import com.google.gson.Gson;
+import java.lang.reflect.InvocationTargetException;
 
 public class ColorBricks implements ModInitializer {
     public static final String MOD_ID = "colorbricks";
@@ -27,7 +26,7 @@ public class ColorBricks implements ModInitializer {
         String[] blockTypes = {"bricks", "brick_slab", "brick_stairs", "brick_wall", "brick_column"};
         Item.Settings itemSetting = new Item.Settings().group(ItemGroup.BUILDING_BLOCKS);
         BlockState brickState = Blocks.BRICKS.getDefaultState();
-        Boolean addColumns = FabricLoader.getInstance().isModLoaded("columns");
+        boolean addColumns = FabricLoader.getInstance().isModLoaded("columns");
 
         class BrickStairs extends StairsBlock {
             public BrickStairs(Settings settings) {
@@ -47,13 +46,21 @@ public class ColorBricks implements ModInitializer {
                 }
                 String name = color.getName() + "_" + blockType;
                 Identifier id = new Identifier(MOD_ID, name);
-                Block block = switch (blockType) {
-                    case "brick_slab" -> new SlabBlock(blockSettings);
-                    case "brick_stairs" -> new BrickStairs(blockSettings);
-                    case "brick_wall" -> new WallBlock(blockSettings);
-                    case "brick_column" -> new ColumnBlock(blockSettings);
-                    default -> new Block(blockSettings);
-                };
+                Block block;
+                try {
+                    block = switch (blockType) {
+                        case "brick_slab" -> new SlabBlock(blockSettings);
+                        case "brick_stairs" -> new BrickStairs(blockSettings);
+                        case "brick_wall" -> new WallBlock(blockSettings);
+                        case "brick_column" -> (Block) Class
+                                .forName("io.github.haykam821.columns.block.ColumnBlock")
+                                .getDeclaredConstructor()
+                                .newInstance(blockSettings);
+                        default -> new Block(blockSettings);
+                    };
+                } catch (InstantiationException|IllegalAccessException|InvocationTargetException|NoSuchMethodException|ClassNotFoundException e) {
+                    continue;
+                }
 
                 Registry.register(Registry.BLOCK, id, block);
                 Item item = new BlockItem(block, itemSetting);
